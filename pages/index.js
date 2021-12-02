@@ -1,9 +1,15 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>LeafTunes</h1>
+    <div className="">
+      <Head>
+        <title>ITunes Clone</title>
+        <link rel="shortcut icon" type="image/ico" src="/favicon.ico" />
+      </Head>
+      <h1>Let's make a ITunes Clone :)</h1>
     </div>
   );
-}
+};
+
+export default Home;
