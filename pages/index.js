@@ -1,13 +1,18 @@
 import Head from "next/head";
+import Body from "../components/Body";
+import Sidebar from "../components/Sidebar";
 
 const Home = () => {
   return (
     <div className="">
       <Head>
         <title>ITunes Clone</title>
-        <link rel="shortcut icon" type="image/ico" src="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
-      <h1>Let's make a ITunes Clone :)</h1>
+      <main className="flex">
+        <Sidebar />
+        <Body />
+      </main>
     </div>
   );
 };
