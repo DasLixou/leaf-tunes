@@ -6,14 +6,17 @@ import {
   RewindIcon,
   VolumeUpIcon
 } from "@heroicons/react/outline";
+import { useState } from "react";
 
 const Body = () => {
+  const [playerRange, setPlayerRange] = useState(0);
+  const [volumeRange, setVolumeRange] = useState(50);
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
       <header className="flex justify-between">
         <div className="flex items-center">
           <img
-            className="h-[55px] w-[55px] rounded-lg m-3"
+            className="h-[45px] w-[45px] md:h-[55px] md:w-[55px] rounded-lg m-3"
             src="/player_title_pic.png"
           />
           <div className="">
@@ -27,11 +30,24 @@ const Body = () => {
             <PauseIcon className="header_button" />
             <FastForwardIcon className="header_button" />
           </div>
-          <input type="range" className="w-full" min={0} max={100} />
+          <input
+            type="range"
+            className="w-full mt-2"
+            min={0}
+            max={100}
+            value={playerRange}
+            onChange={e => setPlayerRange(e.target.value)}
+          />
         </div>
-        <div className="flex items-center mr-4 space-x-2">
+        <div className="hidden md:inline-flex items-center mr-4 space-x-2">
           <div className="flex items-center">
-            <input type="range" />
+            <input
+              type="range"
+              min={0}
+              max={100}
+              value={volumeRange}
+              onChange={e => setVolumeRange(e.target.value)}
+            />
             <VolumeUpIcon className="button_header_2 ml-2" />
           </div>
           <div className="flex items-center border-[0.1px] p-2 space-x-[2px]">
@@ -41,7 +57,7 @@ const Body = () => {
         </div>
       </header>
       <hr className="border-t-[0.1px] border-gray-300" />
-      <main className=""></main>
+      <div className=""></div>
     </div>
   );
 };
