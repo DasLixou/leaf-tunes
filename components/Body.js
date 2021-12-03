@@ -3,14 +3,30 @@ import {
   ExclamationCircleIcon,
   FastForwardIcon,
   PauseIcon,
+  PlayIcon,
   RewindIcon,
   VolumeUpIcon
 } from "@heroicons/react/outline";
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import {
+  isPlayingState,
+  playerRangeState,
+  volumeRangeState
+} from "../atoms/music";
 
 const Body = () => {
-  const [playerRange, setPlayerRange] = useState(0);
-  const [volumeRange, setVolumeRange] = useState(50);
+  const [playerRange, setPlayerRange] = useRecoilState(playerRangeState);
+  const [volumeRange, setVolumeRange] = useRecoilState(volumeRangeState);
+  const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
+
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      setIsPlaying(false);
+    } else {
+      setIsPlaying(true);
+    }
+  };
+
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
       <header className="flex justify-between">
@@ -27,7 +43,11 @@ const Body = () => {
         <div className="pt-2 px-[50px] flex-grow flex flex-col items-center">
           <div className="flex space-x-4">
             <RewindIcon className="header_button" />
-            <PauseIcon className="header_button" />
+            {isPlaying ? (
+              <PauseIcon onClick={handlePlayPause} className="header_button" />
+            ) : (
+              <PlayIcon onClick={handlePlayPause} className="header_button" />
+            )}
             <FastForwardIcon className="header_button" />
           </div>
           <input
