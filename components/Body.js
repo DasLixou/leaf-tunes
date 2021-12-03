@@ -28,16 +28,8 @@ const Body = () => {
     }
   };
 
-  const fastForward = () => {
-    if (playerRange >= 0 && playerRange <= 100) {
-      setPlayerRange(typeof playerRange === "number" && playerRange + 10);
-    }
-  };
-  const rewind = () => {
-    if (playerRange >= 0 && playerRange <= 100) {
-      setPlayerRange(typeof playerRange === "number" && playerRange - 10);
-    }
-  };
+  const fastForward = () => {};
+  const rewind = () => {};
 
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
