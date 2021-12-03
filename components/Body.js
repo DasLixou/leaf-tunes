@@ -8,17 +8,19 @@ import {
   VolumeUpIcon as VolumeDownIcon
 } from "@heroicons/react/outline";
 import { VolumeUpIcon } from "@heroicons/react/solid";
-import { useRecoilState } from "recoil";
 import {
   isPlayingState,
   playerRangeState,
   volumeRangeState
 } from "../atoms/music";
+import { useState, useEffect } from "react";
+import { useAtom } from "jotai";
 
 const Body = () => {
-  const [playerRange, setPlayerRange] = useRecoilState(playerRangeState);
-  const [volumeRange, setVolumeRange] = useRecoilState(volumeRangeState);
-  const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
+  const [playerRange, setPlayerRange] = useAtom(playerRangeState);
+  const [volumeRange, setVolumeRange] = useAtom(volumeRangeState);
+  const [isPlaying, setIsPlaying] = useAtom(isPlayingState);
+  const [musics, setMusics] = useState([]);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -28,20 +30,20 @@ const Body = () => {
     }
   };
 
-  const fastForward = () => {
-    if (playerRange >= 0 && playerRange <= 100) {
-      setPlayerRange(typeof playerRange === "number" && playerRange + 10);
-    }
-  };
-  const rewind = () => {
-    if (playerRange >= 0 && playerRange <= 100) {
-      setPlayerRange(typeof playerRange === "number" && playerRange - 10);
-    }
-  };
+  const fastForward = () => {};
+  const rewind = () => {};
+
+  useEffect(() => {
+    const fetchData = async () => {};
+
+    fetchData();
+  }, []);
+
+  console.log(musics);
 
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
-      <header className="flex justify-between">
+      <header className="flex justify-between bg-white">
         <div className="flex items-center">
           <img
             className="h-[45px] w-[45px] md:h-[55px] md:w-[55px] rounded-lg m-3"
@@ -80,7 +82,7 @@ const Body = () => {
               value={volumeRange}
               onChange={e => setVolumeRange(e.target.value)}
             />
-            {volumeRange === 0 ? (
+            {volumeRange < 50 ? (
               <VolumeDownIcon className="button_header_2 ml-2" />
             ) : (
               <VolumeUpIcon className="button_header_2 ml-2" />
@@ -93,7 +95,14 @@ const Body = () => {
         </div>
       </header>
       <hr className="border-t-[0.1px] border-gray-300" />
-      <div className=""></div>
+      <div className="p-[20px] md:p-[25px] lg:p-[30px] lg:px-[50px]">
+        <p className="font-bold text-2xl lg:text-4xl">Listen Now</p>
+        <hr className="border-t-[0.1px] border-gray-300 my-4" />
+        <div className="flex justify-between font-semibold text-lg mr-2">
+          <h1 className="cursor-pointer">Up Next</h1>
+          <h1 className="text-blue-300 cursor-pointer">See All</h1>
+        </div>
+      </div>
     </div>
   );
 };

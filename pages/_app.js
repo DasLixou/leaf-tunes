@@ -1,11 +1,11 @@
-import { RecoilRoot } from "recoil";
+import { Provider as JotaiProvider } from "jotai";
 import "../styles.css";
 
 const MyApp = ({ Component, pageProps }) => {
   return (
-    <RecoilRoot>
+    <JotaiProvider>
       <Component {...pageProps} />
-    </RecoilRoot>
+    </JotaiProvider>
   );
 };
 
