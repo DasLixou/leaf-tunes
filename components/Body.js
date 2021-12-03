@@ -5,8 +5,9 @@ import {
   PauseIcon,
   PlayIcon,
   RewindIcon,
-  VolumeUpIcon
+  VolumeUpIcon as VolumeDownIcon
 } from "@heroicons/react/outline";
+import { VolumeUpIcon } from "@heroicons/react/solid";
 import { useRecoilState } from "recoil";
 import {
   isPlayingState,
@@ -27,6 +28,17 @@ const Body = () => {
     }
   };
 
+  const fastForward = () => {
+    if (playerRange >= 0 && playerRange <= 100) {
+      setPlayerRange(typeof playerRange === "number" && playerRange + 10);
+    }
+  };
+  const rewind = () => {
+    if (playerRange >= 0 && playerRange <= 100) {
+      setPlayerRange(typeof playerRange === "number" && playerRange - 10);
+    }
+  };
+
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
       <header className="flex justify-between">
@@ -42,13 +54,13 @@ const Body = () => {
         </div>
         <div className="pt-2 px-[50px] flex-grow flex flex-col items-center">
           <div className="flex space-x-4">
-            <RewindIcon className="header_button" />
+            <RewindIcon onClick={rewind} className="header_button" />
             {isPlaying ? (
               <PauseIcon onClick={handlePlayPause} className="header_button" />
             ) : (
               <PlayIcon onClick={handlePlayPause} className="header_button" />
             )}
-            <FastForwardIcon className="header_button" />
+            <FastForwardIcon onClick={fastForward} className="header_button" />
           </div>
           <input
             type="range"
@@ -68,7 +80,11 @@ const Body = () => {
               value={volumeRange}
               onChange={e => setVolumeRange(e.target.value)}
             />
-            <VolumeUpIcon className="button_header_2 ml-2" />
+            {volumeRange === 0 ? (
+              <VolumeDownIcon className="button_header_2 ml-2" />
+            ) : (
+              <VolumeUpIcon className="button_header_2 ml-2" />
+            )}
           </div>
           <div className="flex items-center border-[0.1px] p-2 space-x-[2px]">
             <ExclamationCircleIcon className="button_header_2 border-r-[0.1px]" />
