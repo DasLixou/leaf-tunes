@@ -13,14 +13,14 @@ import {
   playerRangeState,
   volumeRangeState
 } from "../atoms/music";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAtom } from "jotai";
+import Video from "./Video";
 
-const Body = () => {
+const Body = playlistData => {
   const [playerRange, setPlayerRange] = useAtom(playerRangeState);
   const [volumeRange, setVolumeRange] = useAtom(volumeRangeState);
   const [isPlaying, setIsPlaying] = useAtom(isPlayingState);
-  const [musics, setMusics] = useState([]);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -38,8 +38,6 @@ const Body = () => {
 
     fetchData();
   }, []);
-
-  console.log(musics);
 
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
@@ -101,6 +99,11 @@ const Body = () => {
         <div className="flex justify-between font-semibold text-lg mr-2">
           <h1 className="cursor-pointer">Up Next</h1>
           <h1 className="text-blue-300 cursor-pointer">See All</h1>
+        </div>
+        <div className="flex space-x-10 sm:space-x-20 whitespace-nowrap overflow-x-scroll scrollbar-hide p-10">
+          {playlistData?.playlistData?.data?.items.map((video, index) => (
+            <Video key={index} video={video} />
+          ))}
         </div>
       </div>
     </div>
