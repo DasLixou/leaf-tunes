@@ -8,17 +8,19 @@ import {
   VolumeUpIcon as VolumeDownIcon
 } from "@heroicons/react/outline";
 import { VolumeUpIcon } from "@heroicons/react/solid";
-import { useRecoilState } from "recoil";
 import {
   isPlayingState,
   playerRangeState,
   volumeRangeState
 } from "../atoms/music";
+import { useState, useEffect } from "react";
+import { useAtom } from "jotai";
 
 const Body = () => {
-  const [playerRange, setPlayerRange] = useRecoilState(playerRangeState);
-  const [volumeRange, setVolumeRange] = useRecoilState(volumeRangeState);
-  const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
+  const [playerRange, setPlayerRange] = useAtom(playerRangeState);
+  const [volumeRange, setVolumeRange] = useAtom(volumeRangeState);
+  const [isPlaying, setIsPlaying] = useAtom(isPlayingState);
+  const [musics, setMusics] = useState([]);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -30,6 +32,14 @@ const Body = () => {
 
   const fastForward = () => {};
   const rewind = () => {};
+
+  useEffect(() => {
+    const fetchData = async () => {};
+
+    fetchData();
+  }, []);
+
+  console.log(musics);
 
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">

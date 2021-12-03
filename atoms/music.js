@@ -1,16 +1,7 @@
-import { atom } from "recoil";
+import { atom } from "jotai";
 
-export const playerRangeState = atom({
-  key: "playerRangeState",
-  default: 0
-});
+export const playerRangeState = atom(0);
 
-export const volumeRangeState = atom({
-  key: "volumeRangeState",
-  default: 50
-});
+export const volumeRangeState = atom(50);
 
-export const isPlayingState = atom({
-  key: "isPlayingState",
-  default: false
-});
+export const isPlayingState = atom(false);
