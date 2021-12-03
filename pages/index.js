@@ -9,7 +9,7 @@ const Home = () => {
         <title>ITunes Clone</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <main className="flex space-x-2">
+      <main className="flex space-x-2 overflow-hidden">
         <Sidebar />
         <Body />
       </main>

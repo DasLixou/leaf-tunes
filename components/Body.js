@@ -41,7 +41,7 @@ const Body = () => {
 
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
-      <header className="flex justify-between">
+      <header className="flex justify-between bg-white">
         <div className="flex items-center">
           <img
             className="h-[45px] w-[45px] md:h-[55px] md:w-[55px] rounded-lg m-3"
@@ -80,7 +80,7 @@ const Body = () => {
               value={volumeRange}
               onChange={e => setVolumeRange(e.target.value)}
             />
-            {volumeRange === 0 ? (
+            {volumeRange < 50 ? (
               <VolumeDownIcon className="button_header_2 ml-2" />
             ) : (
               <VolumeUpIcon className="button_header_2 ml-2" />
@@ -93,7 +93,14 @@ const Body = () => {
         </div>
       </header>
       <hr className="border-t-[0.1px] border-gray-300" />
-      <div className=""></div>
+      <div className="p-[20px] md:p-[25px] lg:p-[30px] lg:px-[50px]">
+        <p className="font-bold text-2xl lg:text-4xl">Listen Now</p>
+        <hr className="border-t-[0.1px] border-gray-300 my-4" />
+        <div className="flex justify-between font-semibold text-lg mr-2">
+          <h1 className="cursor-pointer">Up Next</h1>
+          <h1 className="text-blue-300 cursor-pointer">See All</h1>
+        </div>
+      </div>
     </div>
   );
 };
