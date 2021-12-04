@@ -106,10 +106,10 @@ const Body = ({ playlistData }) => {
         <p className="font-bold text-2xl lg:text-4xl">Listen Now</p>
         <hr className="border-t-[0.1px] border-gray-300 my-4" />
         <div className="flex justify-between font-semibold text-lg mr-2">
-          <h1 className="cursor-pointer">Up Next</h1>
+          <h1 className="">Up Next</h1>
           <h1 className="text-blue-300 cursor-pointer">See All</h1>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-3 md:p-6 lg:p-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 3xl:grid-cols-6 p-3 md:p-6 lg:p-8">
           {playlistData?.items.map((video, index) => (
             <Video key={index} video={video} />
           ))}
