@@ -13,14 +13,17 @@ import {
   playerRangeState,
   volumeRangeState
 } from "../atoms/music";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useAtom } from "jotai";
 import Video from "./Video";
+import { currentTrackIDState } from "../atoms/video";
 
-const Body = playlistData => {
+const Body = ({ playlistData }) => {
   const [playerRange, setPlayerRange] = useAtom(playerRangeState);
   const [volumeRange, setVolumeRange] = useAtom(volumeRangeState);
   const [isPlaying, setIsPlaying] = useAtom(isPlayingState);
+  const [currentTrackID] = useAtom(currentTrackIDState);
+  const [videoData, setVideoData] = useState(null);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -32,12 +35,6 @@ const Body = playlistData => {
 
   const fastForward = () => {};
   const rewind = () => {};
-
-  useEffect(() => {
-    const fetchData = async () => {};
-
-    fetchData();
-  }, []);
 
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
@@ -101,7 +98,7 @@ const Body = playlistData => {
           <h1 className="text-blue-300 cursor-pointer">See All</h1>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-3 md:p-6 lg:p-10">
-          {playlistData?.playlistData?.data?.items.map((video, index) => (
+          {playlistData?.items.map((video, index) => (
             <Video key={index} video={video} />
           ))}
         </div>

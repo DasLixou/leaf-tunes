@@ -3,7 +3,7 @@ import Body from "../components/Body";
 import Sidebar from "../components/Sidebar";
 import { dummyData } from "../lib/dummyData";
 
-const Home = data => {
+const Home = ({ data }) => {
   return (
     <div className="">
       <Head>
