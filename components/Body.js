@@ -100,7 +100,7 @@ const Body = playlistData => {
           <h1 className="cursor-pointer">Up Next</h1>
           <h1 className="text-blue-300 cursor-pointer">See All</h1>
         </div>
-        <div className="flex space-x-10 sm:space-x-20 whitespace-nowrap overflow-x-scroll scrollbar-hide p-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-3 md:p-6 lg:p-10">
           {playlistData?.playlistData?.data?.items.map((video, index) => (
             <Video key={index} video={video} />
           ))}
