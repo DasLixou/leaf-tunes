@@ -22,11 +22,13 @@ export default Home;
 
 export async function getServerSideProps(context) {
   const dummyDataUSE = true;
+  const numberOfResults = 10;
+
   let data;
 
   if (!dummyDataUSE) {
     const res = await fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?maxResults=10&part=snippet&playlistId=PLRBp0Fe2GpgmgoscNFLxNyBVSFVdYmFkq&key=${process.env.API_KEY}`
+      `https://www.googleapis.com/youtube/v3/playlistItems?maxResults=${numberOfResults}&part=snippet&playlistId=PLRBp0Fe2GpgmgoscNFLxNyBVSFVdYmFkq&key=${process.env.API_KEY}`
     );
     data = await res.json();
   }

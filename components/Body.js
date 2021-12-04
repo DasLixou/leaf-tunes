@@ -16,7 +16,9 @@ import {
 import { useState } from "react";
 import { useAtom } from "jotai";
 import Video from "./Video";
+import { useEffect } from "react";
 import { currentTrackIDState } from "../atoms/video";
+import moment from "moment";
 
 const Body = ({ playlistData }) => {
   const [playerRange, setPlayerRange] = useAtom(playerRangeState);
@@ -24,6 +26,12 @@ const Body = ({ playlistData }) => {
   const [isPlaying, setIsPlaying] = useAtom(isPlayingState);
   const [currentTrackID] = useAtom(currentTrackIDState);
   const [videoData, setVideoData] = useState(null);
+
+  useEffect(() => {
+    playlistData?.items
+      .filter(items => items?.id === currentTrackID)
+      .map(data => setVideoData(data));
+  }, [currentTrackID, playlistData]);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -42,11 +50,15 @@ const Body = ({ playlistData }) => {
         <div className="flex items-center">
           <img
             className="h-[45px] w-[45px] md:h-[55px] md:w-[55px] rounded-lg m-3"
-            src="/player_title_pic.png"
+            src={videoData?.snippet?.thumbnails?.maxres?.url}
           />
           <div className="">
-            <h3 className="text-gray-600 text-sm font-bold">8. Whiteout</h3>
-            <h3 className="text-gray-400 text-xs">Blackout - Apr 30, 2019</h3>
+            <h3 className="text-gray-600 text-sm font-bold">
+              {videoData?.snippet?.title}
+            </h3>
+            <h3 className="text-gray-400 text-xs">
+              {moment(videoData?.snippet?.publishedAt).format("ll")}
+            </h3>
           </div>
         </div>
         <div className="pt-2 px-[50px] flex-grow flex flex-col items-center">
