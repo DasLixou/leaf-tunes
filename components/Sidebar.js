@@ -29,7 +29,7 @@ const Library = ({ Icon, label }) => {
 
 const Sidebar = () => {
   return (
-    <div className="hidden md:inline sm:w-[192px] lg:w-[240px] top-0 left-0 h-screen m-0 flex flex-col bg-[#d1d6e6] pt-3 px-2 gap-y-3 overflow-x-hidden border-r-[0.1px] border-gray-400">
+    <div className="hidden sm:w-[192px] lg:w-[240px] top-0 left-0 h-screen m-0 md:flex flex-col bg-[#d1d6e6] pt-3 px-2 gap-y-3 overflow-x-hidden border-r-[0.1px] border-gray-400">
       <div className="w-11/12 h-8 mx-auto items-center bg-gray-50 rounded-md flex">
         <SearchIcon className="w-5 ml-2.5 text-gray-700" />
         <input
