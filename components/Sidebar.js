@@ -1,10 +1,35 @@
 import { SearchIcon } from "@heroicons/react/outline";
-import { CakeIcon } from "@heroicons/react/solid";
+import {
+  CogIcon,
+  AdjustmentsIcon,
+  StatusOnlineIcon,
+  ClockIcon,
+  DownloadIcon,
+  DesktopComputerIcon,
+  DuplicateIcon
+} from "@heroicons/react/solid";
+
+const Podcasts = ({ Icon, label }) => {
+  return (
+    <div className="flex cursor-pointer hover:bg-gray-400 rounded-lg items-center">
+      <Icon className="text-white bg-purple-300 h-7 w-7 p-[2px] rounded-lg" />
+      <p className="text-xs ml-4">{label}</p>
+    </div>
+  );
+};
+
+const Library = ({ Icon, label }) => {
+  return (
+    <div className="flex cursor-pointer hover:bg-gray-400 rounded-lg items-center">
+      <Icon className="text-white bg-blue-300 h-7 w-7 p-[2px] rounded-lg" />
+      <p className="text-xs ml-4">{label}</p>
+    </div>
+  );
+};
 
 const Sidebar = () => {
   return (
-    <div className="sm:w-[192px] lg:w-[240px] top-0 left-0 h-screen m-0 flex flex-col bg-indigo-50 pt-3 px-2 gap-y-3 overflow-x-hidden">
-      {/** Search bar */}
+    <div className="hidden md:inline sm:w-[192px] lg:w-[240px] top-0 left-0 h-screen m-0 flex flex-col bg-[#d1d6e6] pt-3 px-2 gap-y-3 overflow-x-hidden border-r-[0.1px] border-gray-400">
       <div className="w-11/12 h-8 mx-auto items-center bg-gray-50 rounded-md flex">
         <SearchIcon className="w-5 ml-2.5 text-gray-700" />
         <input
@@ -13,33 +38,29 @@ const Sidebar = () => {
           type="text"
         />
       </div>
-
-      {/** Section */}
-      <SidebarSection name="Your Library" />
+      <div className="space-y-7 ml-2">
+        <div className="mt-4">
+          <h1 className="text-sm text-gray-500 font-semibold my-2">
+            Apple Podcasts
+          </h1>
+          <div className="space-y-2">
+            <Podcasts Icon={CogIcon} label="Listen Now" />
+            <Podcasts Icon={StatusOnlineIcon} label="Browser" />
+            <Podcasts Icon={AdjustmentsIcon} label="Top Charts" />
+          </div>
+        </div>
+        <div>
+          <h1 className="text-sm text-gray-500 font-semibold my-2">Library</h1>
+          <div className="space-y-2">
+            <Library Icon={ClockIcon} label="Recently Added" />
+            <Library Icon={DesktopComputerIcon} label="Shows" />
+            <Library Icon={DuplicateIcon} label="Episodes" />
+            <Library Icon={DownloadIcon} label="Downloaded" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Sidebar;
-
-export const SidebarSection = ({ name }) => {
-  return (
-    <section>
-      <h1 className="text-sm text-gray-500 font-semibold">{name}</h1>
-      <div className="h-7 flex gap-x-1 items-center px-2">
-        <CakeIcon className="h-4/5 text-white flex-shrink-0 bg-green-400 border-green-400 border-2 rounded-md" />
-        <h1 className="text-sm text-gray-800">Birthday Playlist 1</h1>
-      </div>
-      <SidebarElement name="Songs for Research" color="indigo-50" Icon={SearchIcon} />
-    </section>
-  );
-};
-
-export const SidebarElement = ({ name, color, Icon }) => {
-  return (
-    <div className="h-7 flex gap-x-1 items-center px-2">
-      <Icon className={`h-4/5 text-white flex-shrink-0 bg-${color} border-${color} border-2 rounded-md`} />
-      <h1 className="text-sm text-gray-800">{name}</h1>
-    </div>
-  );
-};
