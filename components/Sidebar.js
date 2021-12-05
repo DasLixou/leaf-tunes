@@ -30,10 +30,6 @@ export const SidebarSection = ({ name }) => {
         <CakeIcon className="h-4/5 text-white flex-shrink-0 bg-green-400 border-green-400 border-2 rounded-md" />
         <h1 className="text-sm text-gray-800">Birthday Playlist 1</h1>
       </div>
-      <div className="h-10 flex gap-x-2 items-center">
-        <CakeIcon className="h-4/5 text-white flex-shrink-0 bg-yellow-400 border-yellow-400 border-4 rounded-md" />
-        <h1 className="text-sm text-gray-800">BDay-2</h1>
-      </div>
       <SidebarElement name="Songs for Research" color="indigo-50" Icon={SearchIcon} />
     </section>
   );
@@ -42,7 +38,7 @@ export const SidebarSection = ({ name }) => {
 export const SidebarElement = ({ name, color, Icon }) => {
   return (
     <div className="h-7 flex gap-x-1 items-center px-2">
-      <Icon className={`h-4/5 text-white flex-shrink-0 bg-green-50 border-green-50 border-2 rounded-md`} />
+      <Icon className={`h-4/5 text-white flex-shrink-0 bg-${color} border-${color} border-2 rounded-md`} />
       <h1 className="text-sm text-gray-800">{name}</h1>
     </div>
   );
