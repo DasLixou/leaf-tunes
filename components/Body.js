@@ -13,14 +13,25 @@ import {
   playerRangeState,
   volumeRangeState
 } from "../atoms/music";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAtom } from "jotai";
+import Video from "./Video";
+import { useEffect } from "react";
+import { currentTrackIDState } from "../atoms/video";
+import moment from "moment";
 
-const Body = () => {
+const Body = ({ playlistData }) => {
   const [playerRange, setPlayerRange] = useAtom(playerRangeState);
   const [volumeRange, setVolumeRange] = useAtom(volumeRangeState);
   const [isPlaying, setIsPlaying] = useAtom(isPlayingState);
-  const [musics, setMusics] = useState([]);
+  const [currentTrackID] = useAtom(currentTrackIDState);
+  const [videoData, setVideoData] = useState(null);
+
+  useEffect(() => {
+    playlistData?.items
+      .filter(items => items?.id === currentTrackID)
+      .map(data => setVideoData(data));
+  }, [currentTrackID, playlistData]);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -33,25 +44,21 @@ const Body = () => {
   const fastForward = () => {};
   const rewind = () => {};
 
-  useEffect(() => {
-    const fetchData = async () => {};
-
-    fetchData();
-  }, []);
-
-  console.log(musics);
-
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
       <header className="flex justify-between bg-white">
         <div className="flex items-center">
           <img
-            className="h-[45px] w-[45px] md:h-[55px] md:w-[55px] rounded-lg m-3"
-            src="/player_title_pic.png"
+            className="h-[45px] w-[70px] md:h-[55px] md:w-[80px] rounded-lg m-3"
+            src={videoData?.snippet?.thumbnails?.maxres?.url}
           />
           <div className="">
-            <h3 className="text-gray-600 text-sm font-bold">8. Whiteout</h3>
-            <h3 className="text-gray-400 text-xs">Blackout - Apr 30, 2019</h3>
+            <h3 className="text-gray-600 text-sm font-bold">
+              {videoData?.snippet?.title}
+            </h3>
+            <h3 className="text-gray-400 text-xs">
+              {moment(videoData?.snippet?.publishedAt).format("ll")}
+            </h3>
           </div>
         </div>
         <div className="pt-2 px-[50px] flex-grow flex flex-col items-center">
@@ -99,8 +106,13 @@ const Body = () => {
         <p className="font-bold text-2xl lg:text-4xl">Listen Now</p>
         <hr className="border-t-[0.1px] border-gray-300 my-4" />
         <div className="flex justify-between font-semibold text-lg mr-2">
-          <h1 className="cursor-pointer">Up Next</h1>
+          <h1 className="">Up Next</h1>
           <h1 className="text-blue-300 cursor-pointer">See All</h1>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 3xl:grid-cols-6 p-3 md:p-6 lg:p-8">
+          {playlistData?.items.map((video, index) => (
+            <Video key={index} video={video} />
+          ))}
         </div>
       </div>
     </div>
