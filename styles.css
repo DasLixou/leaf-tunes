@@ -10,4 +10,8 @@
   .button_header_2 {
     @apply text-gray-500 h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out;
   }
+
+  .fix-scale-animation {
+    backface-visibility: hidden;
+  }
 }
