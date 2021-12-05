@@ -49,7 +49,7 @@ const Body = ({ playlistData }) => {
       <header className="flex justify-between bg-white">
         <div className="flex items-center">
           <img
-            className="h-[45px] w-[45px] md:h-[55px] md:w-[55px] rounded-lg m-3"
+            className="h-[45px] w-[70px] md:h-[55px] md:w-[80px] rounded-lg m-3"
             src={videoData?.snippet?.thumbnails?.maxres?.url}
           />
           <div className="">
