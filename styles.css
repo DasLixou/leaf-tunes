@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .header_button {
+    @apply text-gray-500 h-10 w-10 cursor-pointer hover:scale-125 transition transform duration-100 ease-out;
+  }
+
+  .button_header_2 {
+    @apply text-gray-500 h-5 w-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out;
+  }
+}
