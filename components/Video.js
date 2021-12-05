@@ -8,7 +8,7 @@ const Video = ({ video }) => {
 
   return (
     <div
-      className="flex flex-col items-center cursor-pointer py-3 rounded-lg hover:scale-125 transition transform duration-100 ease-out"
+      className="flex flex-col items-center cursor-pointer py-3 rounded-lg hover:scale-110 transition-transform duration-200 ease-in-out fix-scale-animation"
       onClick={() => setCurrentTrackId(video?.id)}
     >
       <img

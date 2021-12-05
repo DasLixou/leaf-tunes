@@ -47,7 +47,7 @@ const Body = ({ playlistData }) => {
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
       <header className="flex justify-between bg-white">
-        <div className="flex items-center">
+        <div className="flex items-center w-72">
           <img
             className="h-[45px] w-[70px] md:h-[55px] md:w-[80px] rounded-lg m-3"
             src={videoData?.snippet?.thumbnails?.maxres?.url}
